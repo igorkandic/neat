@@ -18,6 +18,7 @@
 
 #include <cmath>
 #include <vector>
+#include <string>
 #include "innovation.h"
 #include "genome.h"
 #include "species.h"
@@ -74,12 +75,12 @@ namespace NEAT {
 
 		// Print Population to a file in speciated order with comments separating each species
 		bool print_to_file_by_species(std::ostream& outFile);
-		bool print_to_file_by_species(char *filename);
+		bool print_to_file_by_species(std::string filename);
 
 		// Prints the champions of each species to files starting with directory_prefix
 		// The file name are as follows: [prefix]g[generation_num]cs[species_num]
 		// Thus, they can be indexed by generation or species
-		bool print_species_champs_tofiles(char *directory_prefix,int generation);
+		bool print_species_champs_tofiles(std::string directory_prefix,int generation);
 
 		// Run verify on all Genomes in this Population (Debugging)
 		bool verify();
@@ -111,7 +112,7 @@ namespace NEAT {
 		//Population(int size,int i,int o, int nmax, bool r, double linkprob);
 
 		// Construct off of a file of Genomes 
-		Population(const char *filename);
+		Population(const std::string filename);
 
 		// It can delete a Population in two ways:
 		//    -delete by killing off the species

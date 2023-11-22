@@ -18,6 +18,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <string>
 using namespace NEAT;
 
 Population::Population(Genome *g,int size) {
@@ -93,11 +94,11 @@ Population::Population(std::vector<Genome*> genomeList, float power) {
 	speciate();
 }
 
-Population::Population(const char *filename) {
+Population::Population(const std::string filename) {
 
-	char curword[128];  //max word size of 128 characters
-	char curline[1024]; //max line size of 1024 characters
-	char delimiters[] = " \n";
+	std::string curword;  //max word size of 128 characters
+	std::string curline; //max line size of 1024 characters
+	std::string delimiters = " \n";
 
 	Genome *new_genome;
 
@@ -119,18 +120,18 @@ Population::Population(const char *filename) {
 
 	else {
 		bool md = false;
-		char metadata[128];
+		std::string metadata;
 		//Loop until file is finished, parsing each line
 		while (!iFile.eof()) 
 		{
-			iFile.getline(curline, sizeof(curline));
+			std::getline(iFile, curline);
             std::stringstream ss(curline);
 			//strcpy(curword, NEAT::getUnit(curline, 0, delimiters));
             ss >> curword;
             //std::cout << curline << std::endl;
 
 			//Check for next
-			if (strcmp(curword,"genomestart")==0) 
+			if (curword == "genomestart") 
 			{
 				//strcpy(curword, NEAT::getUnit(curline, 1, delimiters));
 				//int idcheck = atoi(curword);
@@ -140,7 +141,7 @@ Population::Population(const char *filename) {
 
 				// If there isn't metadata, set metadata to ""
 				if(md == false)  {
-					strcpy(metadata, "");
+					metadata = "";
 				}
 				md = false;
 
@@ -152,23 +153,23 @@ Population::Population(const char *filename) {
 				if (cur_innov_num<(new_genome->get_last_gene_innovnum()))
 					cur_innov_num=new_genome->get_last_gene_innovnum();
 			}
-			else if (strcmp(curword,"/*")==0) 
+			else if (curword == "/*") 
 			{
 				// New metadata possibly, so clear out the metadata
-				strcpy(metadata, "");
+				metadata = "";
 				curwordnum=1;
 				//strcpy(curword, NEAT::getUnit(curline, curwordnum++, delimiters));
                 ss >> curword;
 
-				while(strcmp(curword,"*/")!=0)
+				while(curword != "*/")
 				{
 					// If we've started to form the metadata, put a space in the front
 					if(md) {
-						strncat(metadata, " ", 128 - strlen(metadata));
+						metadata = " " + metadata;
 					}
 
 					// Append the next word to the metadata, and say that there is metadata
-					strncat(metadata, curword, 128 - strlen(metadata));
+					metadata = curword + metadata;
 					md = true;
 
 					//strcpy(curword, NEAT::getUnit(curline, curwordnum++, delimiters));
@@ -352,7 +353,7 @@ bool Population::speciate() {
 	return true;
 }
 
-bool Population::print_to_file_by_species(char *filename) {
+bool Population::print_to_file_by_species(std::string filename) {
 
   std::vector<Species*>::iterator curspecies;
 

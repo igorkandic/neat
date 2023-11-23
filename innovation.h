@@ -37,17 +37,13 @@ namespace NEAT {
 	// ------------------------------------------------------------ 
 	class Innovation {
 	private:
-		enum innovtype {
-			NEWNODE = 0,
-			NEWLINK = 1
-		};
 
 		//typedef int innovtype;
 		//const int NEWNODE = 0;
 		//const int NEWLINK = 1;
 
 	public:
-		innovtype innovation_type;  //Either NEWNODE or NEWLINK
+		NEAT::innovtype innovation_type;  //Either NEWNODE or NEWLINK
 
 		int node_in_id;     //Two nodes specify where the innovation took place
 		int node_out_id;

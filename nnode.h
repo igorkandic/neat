@@ -83,7 +83,7 @@ namespace NEAT {
 		bool frozen; // When frozen, cannot be mutated (meaning its trait pointer is fixed)
 
 		functype ftype; // type is either SIGMOID ..or others that can be added
-		nodetype type; // type is either NEURON or SENSOR 
+		NEAT::nodetype type; // type is either NEURON or SENSOR 
 
 		double activesum;  // The incoming activity before being processed 
 		double activation; // The total activation entering the NNode 

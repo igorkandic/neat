@@ -129,7 +129,7 @@ bool Network::outputsoff() {
 }
 
 // Print the connections weights to a file separated by only carriage returns
-void Network::print_links_tofile(char *filename) {
+void Network::print_links_tofile(std::string filename) {
 	std::vector<NNode*>::iterator curnode;
 	std::vector<Link*>::iterator curlink;
 

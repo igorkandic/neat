@@ -132,7 +132,7 @@ namespace NEAT {
 		bool outputsoff();
 
 		// Just print connections weights with carriage returns
-		void print_links_tofile(char *filename);
+		void print_links_tofile(std::string filename);
 
 		int max_depth();
 

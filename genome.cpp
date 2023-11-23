@@ -14,6 +14,7 @@
    limitations under the License.
 */
 #include "genome.h"
+#include "innovation.h"
 
 #include <iostream>
 #include <cmath>
@@ -1493,7 +1494,7 @@ bool Genome::mutate_add_node(std::vector<Innovation*> &innovs,int &curnode_id,do
 		//   in this generation
 		//   so we make it match the original, identical mutation which occured
 		//   elsewhere in the population by coincidence 
-		else if (((*theinnov)->innovation_type==NEWNODE)&&
+		else if (((*theinnov)->innovation_type==innovtype::NEWNODE)&&
 			((*theinnov)->node_in_id==(in_node->node_id))&&
 			((*theinnov)->node_out_id==(out_node->node_id))&&
 			((*theinnov)->old_innov_num==(*thegene)->innovation_num)) 

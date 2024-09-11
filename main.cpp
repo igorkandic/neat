@@ -1,10 +1,14 @@
+#include "mainwindow.h"
+#include <QApplication>
+#include <QVector>
 #include <iostream>
-#include "bot.h"
+#include <algorithm>
+#include <string>
 
-int main(int argc, char** argv)
+int main(int argc, char *argv[])
 {
-
-    AI::Bot bot("Pera");
-    
-    return 0;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
